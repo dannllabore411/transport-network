@@ -1,17 +1,21 @@
 # transport-network
-This project builds a **data-driven prototype** for a **public transit network** in **General Santos City**, Philippines. 
-Using **open geospatial data**, it identifies **high-demand locations** through gridded population density and road accessibility, computes a **main route** connecting the **top-scoring stops** via major roads, and visualizes remaining stops for manual feeder planning. The workflow combines population estimation, custom route scoring, and cost-optimized pathfinding, all within a reproducible Python pipeline.
+This project builds a **data-driven prototype** for a **public transit network** in **General Santos City**, Philippines. <br>
+The workflow combines population estimation, custom route scoring, and cost-optimized pathfinding, all within a reproducible Python pipeline. <br>
+Using **open geospatial data**, it:<br> 
+* identifies **high-demand locations** through gridded population and road density and accessibility
+* computes a **main route** connecting the **top-scoring stops** via major roads, and
+* visualizes remaining stops for manual feeder planning.
 
 <img width="800" alt="network_mainplus" src="https://github.com/user-attachments/assets/6fde53a8-1036-4fa6-9846-89a1b4c6193d" />
 
 ## 1. Data Collection & Cleaning
 * Scraped barangay-level population data from CityPopulation.de
 * Loaded and aligned spatial boundaries (GeoJSON) and OpenStreetMap road data (via osmnx)
-* Standardized barangay names and resolved spatial mismatches
+* Standardized barangay names and resolved mismatches
 
 ## 2. Geospatial Feature Engineering
 * Generated a 200m-resolution grid over the city area
-* Distributed barangay population across grid cells using total road length per cell as a weighting factor
+* Distributed barangay population across grid cells, weighted with road density (total road length per cell)
 * Computed:
   - Road access (sum of road lengths)
   - Connectivity (maximum node degree from nearby OSM intersections)
