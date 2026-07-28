@@ -1,4 +1,4 @@
-# transit_clusters_test.py
+# transit_stops.py
 
 import geopandas as gpd
 import pandas as pd
